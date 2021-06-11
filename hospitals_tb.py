@@ -20,7 +20,7 @@ def json_to_df(data):
         places['address'].append(street + ' ' + str(number))
     return pd.DataFrame(places)
 
-list_health = ["bichitos de colores súper chulos"]
+list_health = ["hospital", "clinic", "doctors"]
 dataframes = []
 for amenity in list_health:
     overpass_url = "http://overpass-api.de/api/interpreter"
@@ -44,9 +44,11 @@ coordenadas_TB = (40.421703,-3.691725)
 some_map2 = folium.Map(location=coordenadas_TB, zoom_start=14)
 
 #for row in subset.itertuples():
-some_map2.add_child(folium.Marker(location=[40.421703,-3.691725],popup="The Bridge",icon=folium.Icon(icon='home',color='red')))
+some_map2.add_child(folium.Marker(location=[40.421703,-3.691725],popup="The Bridge", icon=folium.Icon(icon='home',color='red')))
 mc = MarkerCluster()
+
 for row in health_csv.itertuples():
-    mc.add_child(folium.Marker(location = [row.lat, row.lon],popup=row.name,icon=folium.Icon(icon='glyphicon glyphicon-heart-empty',color='blue')))
+    mc.add_child(folium.Marker(location = [row.lat, row.lon], popup=row.name,icon=folium.Icon(icon='glyphicon glyphicon-heart-empty',color='blue')))
+
 some_map2.add_child(mc)
-some_map2.save('templates/bichitosdecolores.html')
+some_map2.save('templates/map.html')   
