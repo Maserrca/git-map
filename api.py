@@ -18,6 +18,5 @@ def map():
     return render_template('map.html')
 
 
-
 if __name__ == '__main__':
 app.run(host='0.0.0.0',port=1991, debug=True)
